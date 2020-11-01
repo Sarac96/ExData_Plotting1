@@ -15,7 +15,7 @@ dt <- dt %>% filter(Date == "2007-02-01" | Date == "2007-02-02")
 
 # Plot4
 png("plot4.png", height=480, width=480)
-par(mfrow=c(2,2), mar=c(3, 2, 2, 1))
+par(mfrow=c(2,2), mar=c(5, 2, 2, 1))
 #First plot
 plot(x=dt$daytime, dt$Global_active_power, type="l", ylab="Global Active Power", xlab=NA)
 #Second plot
