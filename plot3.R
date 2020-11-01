@@ -3,10 +3,12 @@ library(dplyr)
 library(lubridate)
 
 # Download file and prepare dataset
-tmp <- tempfile()
-download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip", tmp)
-unzip(tmp, overwrite = TRUE)
-file.remove(tmp)
+if (!file.exists("household_power_consumption.txt")) {
+    tmp <- tempfile()
+    download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip", tmp)
+    unzip(tmp, overwrite = TRUE)
+    file.remove(tmp)
+}
 
 dt <- fread("household_power_consumption.txt", na="?")
 dt <- dt %>% mutate(Date= as.Date(Date, "%d/%m/%Y"), daytime= strptime(paste(Date, Time), "%Y-%m-%d %H:%M:%S"))
